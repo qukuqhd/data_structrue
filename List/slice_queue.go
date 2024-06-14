@@ -1,6 +1,6 @@
 package list
 
-import behavior "data_structrue/Behavior"
+import behavior "data_structure/Behavior"
 
 //基于切片的队列
 type SliceQueue[T any] []T

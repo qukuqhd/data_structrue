@@ -1,6 +1,6 @@
 package list
 
-import behavior "data_structrue/Behavior"
+import behavior "data_structure/Behavior"
 
 //队列接口的定义
 type Queue[T any] interface {
