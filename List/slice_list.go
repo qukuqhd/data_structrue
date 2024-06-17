@@ -11,8 +11,8 @@ type SliceStack[T any] struct {
 	value []T
 }
 
-func NewSliceStack[T any]() SliceStack[T] {
-	return SliceStack[T]{
+func NewSliceStack[T any]() Stack[T] {
+	return &SliceStack[T]{
 		value: make([]T, 0),
 	}
 }
@@ -36,8 +36,8 @@ type SliceQueue[T any] struct {
 	value []T
 }
 
-func NewSliceQueue[T any]() SliceQueue[T] {
-	return SliceQueue[T]{
+func NewSliceQueue[T any]() Queue[T] {
+	return &SliceQueue[T]{
 		value: make([]T, 0),
 	}
 }
