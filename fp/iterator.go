@@ -11,6 +11,10 @@ type Iterator[T any] interface {
 	Remove() T          //移除当前的元素
 }
 
+type Iterable[T any] interface {
+	Iter() Iterator[T]
+}
+
 type IteratorObj[T any] struct {
 	Iterator[T]
 }
