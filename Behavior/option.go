@@ -23,17 +23,17 @@ func None[T any]() Option[T] {
 }
 
 //判断option是否是有值的
-func (opt *Option[T]) IsSome() bool {
+func (opt Option[T]) IsSome() bool {
 	return opt.set
 }
 
 //判断option是否是空的
-func (opt *Option[T]) IsNone() bool {
+func (opt Option[T]) IsNone() bool {
 	return !opt.set
 }
 
 //解包option如果是空的就panic
-func (opt *Option[T]) Unwrap() T {
+func (opt Option[T]) Unwrap() T {
 	if !opt.set {
 		panic("unwrap option is none！")
 	} else {
@@ -42,7 +42,7 @@ func (opt *Option[T]) Unwrap() T {
 }
 
 //如果option为空使用默认值否则使用自己的值
-func (opt *Option[T]) Or(defaultVal T) T {
+func (opt Option[T]) Or(defaultVal T) T {
 	if opt.set {
 		return opt.val
 	} else {
