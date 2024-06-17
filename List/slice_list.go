@@ -62,7 +62,7 @@ type SliceList[T any] struct {
 }
 
 // 创建新的基于切片的线性表
-func NewSliceList[T any]() *SliceList[T] {
+func NewSliceList[T any]() List[T] {
 	slice := make([]T, 0)
 	return &SliceList[T]{
 		SliceQueue: &SliceQueue[T]{value: slice},
@@ -87,8 +87,14 @@ func (list *SliceList[T]) Pop() behavior.Option[T] {
 
 func (list *SliceList[T]) Insert(index int, val T) behavior.Result[int] {
 	sliceLen := len((*list).valueList)
-	if index < 0 || index >= sliceLen {
+	if index < 0 || index > sliceLen {
 		return behavior.Err[int](errors.New("out of index"))
+	} else if index == sliceLen {
+		(*list).valueList = append((*list).valueList, val)
+		//同步切片
+		list.SliceQueue.value = (*list).valueList
+		list.SliceStack.value = (*list).valueList
+		return behavior.Ok[int](index)
 	} else {
 		left_slice := ((*list).valueList)[:index]
 		right_slice := ((*list).valueList[index+1:])

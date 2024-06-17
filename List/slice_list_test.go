@@ -3,6 +3,8 @@ package list_test
 import (
 	list "data_structure/List"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSliceStack(t *testing.T) {
@@ -40,4 +42,19 @@ func TestQueue(t *testing.T) {
 	if queue.Dequeue().IsSome() {
 		panic("queue err")
 	}
+}
+
+func TestList(t *testing.T) {
+	a := assert.New(t)
+	list := list.NewSliceList[int]()
+	res := list.Insert(55, 45)
+	a.Equal(res.IsOk(), false)
+	res = list.Insert(0, 55)
+	a.Equal(res.IsOk(), true)
+	res = list.Insert(0, 44)
+	a.Equal(res.IsOk(), true)
+	res = list.Insert(0, 33)
+	a.Equal(res.IsOk(), true)
+	res = list.Insert(0, 22)
+	a.Equal(res.IsOk(), true)
 }

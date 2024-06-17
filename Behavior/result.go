@@ -30,3 +30,10 @@ func (r Result[T]) Or(defaultVal T) T {
 		return defaultVal
 	}
 }
+func (r Result[T]) IsOk() bool {
+	if r.Error != nil {
+		return false
+	} else {
+		return true
+	}
+}
